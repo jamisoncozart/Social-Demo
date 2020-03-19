@@ -1,0 +1,25 @@
+@using SocialDemo.Models;
+
+@{
+  Layout= "_Layout";
+}
+
+<h1>Welcome to Social Demo</h1>
+<hr>
+@foreach (Post post in Model)
+{
+  <div class="postDiv">
+    <div class="card">
+      <div class="upvotes">
+        <p class="upvote">upvote</p>
+        <p class="postScore">@post.Upvotes</p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">@post.Title</h5>
+        <p class="card-text">@post.Body</p>
+        <a href="#" class="card-link">Comments</a>
+        <a href="#" class="card-link">@post.Author</a>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SocialDemo.Models.Post
+
+<h4>New Post</h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Title)
+  @Html.TextBoxFor(model => model.Title)
+
+  @Html.LabelFor(model => model.Body)
+  @Html.TextBoxFor(model => model.Body)
+  
+  @Html.LabelFor(model => model.Author)
+  @Html.TextBoxFor(model => model.Author)
+
+  <input type="submit" value="Post"/>
+}
+<p>@Html.ActionLink("Back to Home", "Index")</p>
