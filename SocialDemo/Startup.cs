@@ -46,6 +46,7 @@ namespace SocialDemo
       {
         await context.Response.WriteAsync("Wha-oh speghettio!");
       });
+      app.UseStaticFiles();
     }
   }
 }
