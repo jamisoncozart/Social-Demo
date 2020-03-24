@@ -1,0 +1,23 @@
+@{Layout = "_Layout";}
+
+@model SocialDemo.Models.Post
+
+<h1>Edit @Html.DisplayFor(model => model.Title)</h1>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.PostId);
+
+  @Html.LabelFor(model => model.Title);
+  @Html.EditorFor(model => model.Title);
+
+  @Html.LabelFor(model => model.Body);
+  @Html.EditorFor(model => model.Body);
+
+  @Html.LabelFor(model => model.Author);
+  @Html.EditorFor(model => model.Author);
+
+  <input type="submit" value="Edit">
+}
+
+<p>@Html.ActionLink("Go back", "Index")</p>

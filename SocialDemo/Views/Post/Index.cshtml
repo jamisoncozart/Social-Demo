@@ -11,14 +11,24 @@
   <div class="postDiv">
     <div class="card">
       <div class="upvotes">
-        <p class="upvote">upvote</p>
-        <p class="postScore">@post.Upvotes</p>
+        <form action="Post/Upvote" method="Post">
+          <input type="hidden" value="@post.PostId">
+          <input type="submit" value="Upvote">
+        </form>
+        <p class="postScore" id="@post.PostId">@post.Upvotes</p>
       </div>
       <div class="card-body">
         <h5 class="card-title">@post.Title</h5>
         <p class="card-text">@post.Body</p>
         <a href="#" class="card-link">Comments</a>
         <a href="#" class="card-link">@post.Author</a>
+        <p>@Html.ActionLink("Edit", "Edit", new { id = post.PostId })</p>
+        <p>@post.PostId</p>
+        @using (Html.BeginForm("Delete"))
+        {
+          <input type="text" value='@post.PostId'>
+          <input type="submit">
+        }
       </div>
     </div>
   </div>
