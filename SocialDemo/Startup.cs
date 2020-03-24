@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SocialDemo.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace SocialDemo
 {
@@ -27,6 +28,10 @@ namespace SocialDemo
       services.AddEntityFrameworkMySql()
         .AddDbContext<SocialDemoContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"])); 
+      
+      services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<SocialDemoContext>()
+        .AddDefaultTokenProviders();
     }
 
     public void Configure(IApplicationBuilder app)
@@ -34,6 +39,8 @@ namespace SocialDemo
       app.UseStaticFiles();
 
       app.UseDeveloperExceptionPage();
+
+      app.UseAuthentication();
 
       app.UseMvc(routes =>
       {
