@@ -32,6 +32,16 @@ namespace SocialDemo
       services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<SocialDemoContext>()
         .AddDefaultTokenProviders();
+
+      services.Configure<IdentityOptions>(options =>
+      {
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequiredUniqueChars = 1;
+      });
     }
 
     public void Configure(IApplicationBuilder app)

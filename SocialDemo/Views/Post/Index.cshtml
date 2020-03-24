@@ -1,8 +1,6 @@
-@using SocialDemo.Models;
+@{Layout= "_Layout";}
 
-@{
-  Layout= "_Layout";
-}
+@using SocialDemo.Models;
 
 <h1>Welcome to Social Demo</h1>
 <hr>
@@ -23,7 +21,7 @@
         <h5 class="card-title">@post.Title</h5>
         <p class="card-text">@post.Body</p>
         <a href="#" class="card-link">Comments</a>
-        <a href="#" class="card-link">@post.Author</a>
+        <a href="#" class="card-link">@post.User</a>
         <p>@Html.ActionLink("Edit", "Edit", new { id = post.PostId })</p>
         <p>@post.PostId</p>
         @using (Html.BeginForm("Delete"))

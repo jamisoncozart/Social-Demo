@@ -3,14 +3,21 @@ using SocialDemo.Models;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace SocialDemo.Controllers
 {
+  [Authorize]
   public class PostController : Controller
   {
     private readonly SocialDemoContext _db;
-    public PostController(SocialDemoContext db)
+    private readonly UserManager<ApplicationUser> _userManager;
+    public PostController(UserManager<ApplicationUser> userManager, SocialDemoContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
@@ -26,8 +33,11 @@ namespace SocialDemo.Controllers
       return View();
     }
     [HttpPost]
-    public ActionResult Create(Post newPost)
+    public async Task<ActionResult> Create(Post newPost)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      newPost.User = currentUser;
       _db.Posts.Add(newPost);
       _db.SaveChanges();
       return RedirectToAction("Index");

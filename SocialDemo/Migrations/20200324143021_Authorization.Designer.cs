@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialDemo.Models;
 
 namespace SocialDemo.Migrations
 {
     [DbContext(typeof(SocialDemoContext))]
-    partial class SocialDemoContextModelSnapshot : ModelSnapshot
+    [Migration("20200324143021_Authorization")]
+    partial class Authorization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,6 +180,8 @@ namespace SocialDemo.Migrations
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Author");
 
                     b.Property<string>("Body");
 
