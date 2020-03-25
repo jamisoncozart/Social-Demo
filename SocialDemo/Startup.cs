@@ -30,6 +30,7 @@ namespace SocialDemo
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"])); 
       
       services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddRoles<IdentityRole>()
         .AddEntityFrameworkStores<SocialDemoContext>()
         .AddDefaultTokenProviders();
 
